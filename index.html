@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dept AI — Технологические решения</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header (nav pill only — CTA lives inside dashboard) -->
+  <header class="header" id="header">
+    <nav class="header__nav">
+      <a href="#" class="header__logo">
+        <div class="header__logo-icon">
+          <img src="images/logo.png" alt="Dept AI" width="30" height="30">
+        </div>
+        <span class="header__logo-text">Dept AI</span>
+      </a>
+      <ul class="header__links">
+        <li>
+          <a href="#about" class="header__link header__link--active">
+            <img src="images/icon-home.png" alt="" class="header__link-icon" width="16" height="16">
+            <span class="header__link-text">О нас</span>
+          </a>
+        </li>
+        <li>
+          <a href="#investments" class="header__link">
+            <img src="images/icon-chart.png" alt="" class="header__link-icon" width="16" height="16">
+            <span class="header__link-text">Инвестиции</span>
+          </a>
+        </li>
+        <li>
+          <a href="#team" class="header__link">
+            <img src="images/icon-team.png" alt="" class="header__link-icon" width="16" height="16">
+            <span class="header__link-text">Команда</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button class="header__burger" id="headerBurger" aria-label="Открыть меню" aria-expanded="false">
+        <span class="header__burger-line"></span>
+        <span class="header__burger-line"></span>
+        <span class="header__burger-line"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile slide-out menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__backdrop" id="mobileMenuBackdrop"></div>
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__header">
+        <a href="#" class="mobile-menu__logo">
+          <img src="images/logo.png" alt="Dept AI" width="30" height="30">
+          <span>Dept AI</span>
+        </a>
+        <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Закрыть меню">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu__nav">
+        <a href="#about" class="mobile-menu__link">
+          <img src="images/icon-home.png" alt="" width="20" height="20">
+          <span>О нас</span>
+        </a>
+        <a href="#investments" class="mobile-menu__link">
+          <img src="images/icon-chart.png" alt="" width="20" height="20">
+          <span>Инвестиции</span>
+        </a>
+        <a href="#team" class="mobile-menu__link">
+          <img src="images/icon-team.png" alt="" width="20" height="20">
+          <span>Команда</span>
+        </a>
+      </nav>
+      <div class="mobile-menu__cta">
+        <a href="#" class="mobile-menu__button" id="mobileMenuContact">Назначить встречу</a>
+      </div>
+      <div class="mobile-menu__footer">
+        <div class="mobile-menu__socials">
+          <a href="#" aria-label="Telegram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+            </svg>
+          </a>
+        </div>
+        <span class="mobile-menu__copy">© 2026 Dept AI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__content">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          Технологические решения
+          в сфере анализа
+          финансовых рынков
+        </h1>
+        <p class="hero__subtitle">
+          Объединяем машинное обучение, аналитику данных
+          и инженерные решения, чтобы сделать торговлю
+          максимально системной
+        </p>
+        <a href="#" class="hero__button">
+          Назначить встречу
+        </a>
+      </div>
+
+      <div class="hero__dashboard">
+        <div class="hero__dashboard-inner">
+          <!-- CTA button positioned in dashboard top-right -->
+          <a href="#" class="dashboard__cta">Связаться с нами</a>
+
+          <!-- Decorative background arcs -->
+          <svg class="hero__dashboard-arcs" viewBox="0 0 520 460" fill="none" preserveAspectRatio="xMidYMid slice">
+            <circle cx="260" cy="160" r="260" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <circle cx="260" cy="160" r="210" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+            <circle cx="260" cy="160" r="160" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <circle cx="260" cy="160" r="110" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          </svg>
+
+          <div class="hero__cards">
+            <!-- Chart Card -->
+            <div class="hero__card hero__card--chart">
+              <div class="hero__chart">
+                <svg viewBox="0 0 300 130" class="hero__chart-svg" preserveAspectRatio="none">
+                  <!-- Main solid wave line — growing amplitude -->
+                  <path
+                    class="chart-line chart-line--main"
+                    d="M-10,105 C5,100 15,98 25,90 C35,82 40,95 55,85 C70,75 72,88 90,72 C108,56 105,80 125,60 C140,44 138,72 158,48 C172,30 168,58 185,38 C195,28 192,52 200,52"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.9)"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <!-- Dashed prediction line — thick rounded dashes -->
+                  <path
+                    class="chart-line chart-line--predict"
+                    d="M200,52 C212,60 218,38 230,18 C242,4 252,22 265,38 C275,50 285,42 300,48"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.55)"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-dasharray="12 10"
+                  />
+                </svg>
+              </div>
+              <p class="hero__card-text">Как мы используем алгоритмы на финансовых рынках</p>
+              <a href="#" class="hero__card-link">Подробнее <span>&rsaquo;</span></a>
+            </div>
+
+            <!-- Report Card -->
+            <div class="hero__card hero__card--report">
+              <p class="hero__card-title">Открытая отчётность нашей торговой модели</p>
+              <a href="#" class="hero__card-link">Перейти <span>&rsaquo;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="video-container" id="videoContainer">
+      <video id="heroVideo" preload="metadata" loop>
+        <source src="video.mp4" type="video/mp4">
+      </video>
+      <button class="video-play" id="videoPlay" aria-label="Воспроизвести видео">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Founders Section -->
+  <section class="founders" id="about">
+    <div class="founders__content">
+      <div class="founders__left">
+        <p class="founders__label">Проблемы индустрии и наше решение</p>
+        <h2 class="founders__heading">
+          Ростислав и Егор<br>
+          <span class="founders__heading--accent">основатели<br>фонда Dept AI</span>
+        </h2>
+      </div>
+      <div class="founders__right">
+        <div class="founders__photo">
+          <img src="images/founders.png" alt="Ростислав и Егор — основатели Dept AI">
+        </div>
+        <div class="founders__text">
+          <p>«Финансовые рынки не являются случайными, но их структура скрыта шумом, высокой скоростью изменений и нестационарностью данных.</p>
+          <p>Большинство участников рынка не способны стабильно распознавать моменты смены фазы: переход от импульса к распределению, от накопления к развороту, от тренда к флэту.</p>
+          <p>Классический технический анализ опирается на статичные паттерны и субъективную интерпретацию графиков.</p>
+          <p>Эти подходы не учитывают изменчивость рыночных режимов, зависимость структуры от контекста и временную динамику поведения цены.</p>
+          <p class="founders__text--bold">Наши модели прогнозируют вероятные изменения тренда и определяют оптимальные точки входа и выхода, минимизируя субъективность решений.»</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Predictive Model Section -->
+  <section class="model" id="investments">
+    <div class="model__content">
+      <div class="model__left">
+        <p class="model__label">Прогнозирование тренда</p>
+        <h2 class="model__heading">
+          Предиктивная<br>модель <span class="model__heading--accent">Dept Soft</span>
+        </h2>
+      </div>
+      <div class="model__right">
+        <div class="model__chart">
+          <svg viewBox="0 0 475 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(59,101,186,0.08)"/>
+                <stop offset="50%" stop-color="rgba(59,101,186,0.18)"/>
+                <stop offset="100%" stop-color="rgba(59,101,186,0.25)"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Background -->
+            <rect width="475" height="320" rx="20" fill="#D8E0F0"/>
+
+            <!-- Vertical dashed grid lines -->
+            <line x1="95" y1="20" x2="95" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
+            <line x1="175" y1="20" x2="175" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
+            <line x1="255" y1="20" x2="255" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
+            <line x1="335" y1="20" x2="335" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
+
+            <!-- Blue highlight band -->
+            <rect x="340" y="0" width="135" height="320" rx="0" fill="url(#bandGrad)" class="model__band"/>
+            <line x1="380" y1="0" x2="380" y2="320" stroke="#2B4D8E" stroke-width="2.5" class="model__band-line"/>
+
+            <!-- Main chart line (WHITE) -->
+            <polyline
+              class="model__line"
+              points="35,195 95,255 175,230 255,85 300,175 340,125 380,105"
+              stroke="white"
+              stroke-width="2.5"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              fill="none"
+            />
+
+            <!-- Dashed prediction line -->
+            <polyline
+              class="model__predict"
+              points="380,105 430,60 465,30"
+              stroke="#4A6FB5"
+              stroke-width="2.5"
+              stroke-dasharray="10 8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            />
+
+            <!-- Data point circles -->
+            <circle class="model__dot" cx="35" cy="195" r="7" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
+            <circle class="model__dot" cx="95" cy="255" r="7" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
+            <circle class="model__dot" cx="175" cy="230" r="6" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
+            <circle class="model__dot" cx="255" cy="85" r="8" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
+            <circle class="model__dot" cx="300" cy="175" r="7" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
+            <circle class="model__dot" cx="340" cy="125" r="8" fill="white" stroke="#4A6FB5" stroke-width="3"/>
+            <circle class="model__dot" cx="380" cy="105" r="8" fill="white" stroke="#4A6FB5" stroke-width="3"/>
+
+            <!-- Prediction endpoint -->
+            <circle class="model__dot model__dot--predict" cx="465" cy="30" r="7" fill="white" stroke="#4A6FB5" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <div class="model__text">
+          <p>Алгоритмическая система анализа и прогнозирования динамики финансовых рынков. Модель обрабатывает исторические котировки, объёмы торгов, макроэкономические показатели и поведенческие сигналы, формируя вероятностные сценарии движения активов.</p>
+          <p>На основе статистических и машинных методов система определяет потенциальные точки входа и выхода, оценивает уровень риска и ожидаемую доходность по различным классам активов — акциям, облигациям, валютам и цифровым инструментам.</p>
+          <p>Подход ориентирован на снижение влияния субъективных решений и повышение обоснованности инвестиционной стратегии за счёт регулярной аналитической переоценки данных.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flagship Products Section -->
+  <section class="products">
+    <div class="products__content">
+      <h2 class="products__heading">Флагманские продукты</h2>
+      <div class="products__grid">
+        <!-- FX Card -->
+        <div class="products__card products__card--light">
+          <img src="images/card-fx.png" alt="Dept Soft FX" class="products__card-bg">
+          <div class="products__card-overlay"></div>
+          <div class="products__card-body">
+            <h3 class="products__card-title">Dept Soft FX</h3>
+            <p class="products__card-text">Подход ориентирован на снижение влияния субъективных решений и повышение обоснованности инвестиционной стратегии</p>
+          </div>
+        </div>
+
+        <!-- Crypto Card -->
+        <div class="products__card products__card--dark">
+          <img src="images/card-crypto.png" alt="Dept Soft Crypto" class="products__card-bg">
+          <div class="products__card-overlay"></div>
+          <div class="products__card-body">
+            <h3 class="products__card-title">Dept Soft Crypto</h3>
+            <p class="products__card-text">Подход ориентирован на снижение влияния субъективных решений и повышение обоснованности инвестиционной стратегии</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section class="approach">
+    <div class="approach__content">
+      <div class="approach__left">
+        <h2 class="approach__heading">
+          Наш подход<br><span class="approach__heading-accent">к формированию<br>капитала</span>
+        </h2>
+        <p class="approach__text">
+          Мы используем подход core-satellite для формирования портфелей. Ядро (core) состоит из инструментов публичного (биржевого) рынка, поэтому здесь мы отдаем предпочтение индексным фондам, т.к. считаем эти рынки высокоэффективными, на которых обгонять индексы становится все сложнее.
+        </p>
+      </div>
+      <div class="approach__right">
+        <div class="approach__diagram">
+          <svg viewBox="0 0 560 440" fill="none" xmlns="http://www.w3.org/2000/svg" class="approach__svg">
+            <!-- Orbital ellipses -->
+            <ellipse cx="280" cy="220" rx="200" ry="100" transform="rotate(-30 280 220)" stroke="#C5CEDF" stroke-width="1.2" class="approach__orbit"/>
+            <ellipse cx="280" cy="220" rx="200" ry="100" transform="rotate(30 280 220)" stroke="#C5CEDF" stroke-width="1.2" class="approach__orbit"/>
+            <ellipse cx="280" cy="220" rx="200" ry="100" transform="rotate(90 280 220)" stroke="#C5CEDF" stroke-width="1.2" class="approach__orbit"/>
+
+            <!-- Central circle -->
+            <circle cx="280" cy="220" r="68" fill="#1C2F56" class="approach__core"/>
+            <text x="280" y="212" text-anchor="middle" fill="white" font-size="16" font-weight="600" font-family="Inter, sans-serif">Ядро</text>
+            <text x="280" y="234" text-anchor="middle" fill="white" font-size="16" font-weight="600" font-family="Inter, sans-serif">Soft Dept</text>
+
+            <!-- Satellite labels -->
+            <!-- Top-left -->
+            <rect x="68" y="52" width="240" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
+            <text x="188" y="79" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Разработка внефинансового ПО</text>
+
+            <!-- Top-right -->
+            <rect x="345" y="52" width="200" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
+            <text x="445" y="79" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Мульти-агентская AI система</text>
+
+            <!-- Middle-left -->
+            <rect x="18" y="200" width="180" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
+            <text x="108" y="227" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Машинное обучение</text>
+
+            <!-- Middle-right -->
+            <rect x="420" y="200" width="130" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
+            <text x="485" y="227" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Работа с данными</text>
+
+            <!-- Bottom-center -->
+            <rect x="115" y="355" width="330" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
+            <text x="280" y="374" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Передовые подходы к портфельному</text>
+            <text x="280" y="391" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">управлению и hedge-фоны</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Section -->
+  <section class="clients">
+    <div class="clients__content">
+      <h2 class="clients__heading">Для частных клиентов<br>и инвесторов</h2>
+
+      <div class="clients__grid">
+        <!-- Card 1: Персональный менеджер -->
+        <div class="clients__card">
+          <div class="clients__icon">
+            <img src="images/icon-manager.png" alt="Персональный менеджер">
+          </div>
+          <h3 class="clients__card-title">Персональный<br>менеджер</h3>
+          <p class="clients__card-text">Личный специалист, сопровождающий клиента, координирующий решения и оперативно адаптирующий стратегию под изменения рынка.</p>
+        </div>
+
+        <!-- Card 2: Индивидуальный финансовый план -->
+        <div class="clients__card">
+          <div class="clients__icon">
+            <img src="images/icon-plan.png" alt="Индивидуальный финансовый план">
+          </div>
+          <h3 class="clients__card-title">Индивидуальный<br>финансовый план</h3>
+          <p class="clients__card-text">Чётко структурированная стратегия с учётом целей, сроков и уровня риска, основанная на анализе активов и сценарном моделировании.</p>
+        </div>
+
+        <!-- Card 3: Финансовая инфраструктура -->
+        <div class="clients__card">
+          <div class="clients__icon">
+            <img src="images/icon-infra.png" alt="Финансовая инфраструктура">
+          </div>
+          <h3 class="clients__card-title">Финансовая<br>инфраструктура</h3>
+          <p class="clients__card-text">Набор инструментов и сервисов для прозрачного управления капиталом, аналитики и контроля результатов.</p>
+        </div>
+
+        <!-- Card 4: Эксклюзивные инвестиции -->
+        <div class="clients__card">
+          <div class="clients__icon">
+            <img src="images/icon-invest.png" alt="Эксклюзивные инвестиции">
+          </div>
+          <h3 class="clients__card-title">Эксклюзивные<br>инвестиции</h3>
+          <p class="clients__card-text">Доступ к закрытым возможностям и инструментам, недоступным на открытом рынке, с приоритетными условиями размещения капитала.</p>
+        </div>
+
+        <!-- Card 5: Полная картина всех активов -->
+        <div class="clients__card">
+          <div class="clients__icon">
+            <img src="images/icon-assets.png" alt="Полная картина всех активов">
+          </div>
+          <h3 class="clients__card-title">Полная картина<br>всех активов</h3>
+          <p class="clients__card-text">Консолидированный учёт и мониторинг всех активов в одном окне для прозрачного контроля и принятия решений.</p>
+        </div>
+
+        <!-- Card 6: Аналитика и отчётность -->
+        <div class="clients__card">
+          <div class="clients__icon">
+            <img src="images/icon-analytics.png" alt="Аналитика и отчётность">
+          </div>
+          <h3 class="clients__card-title">Аналитика<br>и отчётность</h3>
+          <p class="clients__card-text">Регулярные аналитические отчёты и метрики эффективности для объективной оценки результатов и корректировки стратегии.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certs">
+    <div class="certs__content">
+      <div class="certs__header">
+        <h2 class="certs__heading">Сертификат<br>качества</h2>
+        <p class="certs__text">Мы являемся членами профессиональных организаций и соблюдаем соответствующие правила при оказании наших услуг, в первую очередь заботясь о наших клиентах и их благосостоянии</p>
+      </div>
+
+      <div class="certs__grid" id="certsCarousel">
+        <!-- Card 1: IT accreditation -->
+        <div class="certs__card">
+          <div class="certs__card-logo">
+            <img src="images/cert-emblem.png" alt="Аккредитованная ИТ-компания">
+          </div>
+          <p class="certs__card-text">Являемся аккредитованной<br>ИТ-компанией</p>
+        </div>
+
+        <!-- Card 2: Skolkovo -->
+        <div class="certs__card">
+          <div class="certs__card-logo">
+            <img src="images/cert-skolkovo.png" alt="Сколково">
+          </div>
+          <p class="certs__card-text">С 2025 года имеем статус<br>резидента Сколково</p>
+        </div>
+
+        <!-- Card 3: Innovation Fund -->
+        <div class="certs__card">
+          <div class="certs__card-logo">
+            <img src="images/cert-innovations.png" alt="Фонд содействия инновациям">
+          </div>
+          <p class="certs__card-text">Разработка при содействии Фонда<br>содействия инновациям</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team" id="team">
+    <div class="team__content">
+      <div class="team__header">
+        <h2 class="team__heading">Наша команда</h2>
+        <div class="team__actions">
+          <a href="#" class="team__btn team__btn--primary">Назначить встречу</a>
+          <a href="#" class="team__btn team__btn--secondary">Связаться</a>
+        </div>
+      </div>
+
+      <div class="team__grid">
+        <!-- Ростислав -->
+        <div class="team__card">
+          <div class="team__card-photo">
+            <img src="images/team-rostislav.jpg" alt="Ростислав">
+            <div class="team__card-overlay"></div>
+            <div class="team__card-info">
+              <h3 class="team__card-name">Ростислав</h3>
+              <p class="team__card-role">Founder & Product & ML</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Егор -->
+        <div class="team__card">
+          <div class="team__card-photo">
+            <img src="images/team-egor.jpg" alt="Егор">
+            <div class="team__card-overlay"></div>
+            <div class="team__card-info">
+              <h3 class="team__card-name">Егор</h3>
+              <p class="team__card-role">Co-Founder & Strategy & Tech Lead</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Кирилл -->
+        <div class="team__card">
+          <div class="team__card-photo">
+            <img src="images/team-kirill.jpg" alt="Кирилл">
+            <div class="team__card-overlay"></div>
+            <div class="team__card-info">
+              <h3 class="team__card-name">Кирилл</h3>
+              <p class="team__card-role">Trading Lead & Education</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press / Articles Section -->
+  <section class="press">
+    <div class="press__content">
+      <h2 class="press__heading">О нас пишут</h2>
+
+      <div class="press__carousel-wrapper">
+        <div class="press__carousel" id="pressCarousel">
+          <!-- Card 1 -->
+          <article class="press__card">
+            <div class="press__card-image">
+              <span class="press__card-badge">Dept Report</span>
+            </div>
+            <div class="press__card-body">
+              <h3 class="press__card-title">Dept Soft Outlook 2026: Альтернативные подходы к поиску устойчивого роста</h3>
+              <p class="press__card-text">Мы являемся членами профессиональных организаций</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="press__card">
+            <div class="press__card-image">
+              <span class="press__card-badge">Dept Report</span>
+            </div>
+            <div class="press__card-body">
+              <h3 class="press__card-title">Dept Soft Outlook 2026: Альтернативные подходы к поиску устойчивого роста</h3>
+              <p class="press__card-text">Мы являемся членами профессиональных организаций</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="press__card">
+            <div class="press__card-image">
+              <span class="press__card-badge">Dept Report</span>
+            </div>
+            <div class="press__card-body">
+              <h3 class="press__card-title">Dept Soft Outlook 2026: Альтернативные подходы к поиску устойчивого роста</h3>
+              <p class="press__card-text">Мы являемся членами профессиональных организаций</p>
+            </div>
+          </article>
+
+          <!-- Card 4 (extra for scroll) -->
+          <article class="press__card">
+            <div class="press__card-image">
+              <span class="press__card-badge">Dept Report</span>
+            </div>
+            <div class="press__card-body">
+              <h3 class="press__card-title">Dept Soft Outlook 2026: Альтернативные подходы к поиску устойчивого роста</h3>
+              <p class="press__card-text">Мы являемся членами профессиональных организаций</p>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="cta__bg">
+      <img src="images/cta-waves.png" alt="" class="cta__bg-img" />
+    </div>
+    <div class="cta__content">
+      <h2 class="cta__heading">Надежный проводник в&nbsp;мир технологичных финансовых решений</h2>
+      <a href="#" class="cta__button">Назначить встречу</a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <h2 class="faq__heading">Часто задаваемые вопросы</h2>
+
+    <div class="faq__list">
+      <div class="faq__item is-open">
+        <button class="faq__question" type="button">
+          <span>Вопрос первый</span>
+          <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 12.5L10 7.5L15 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq__answer">
+          <p>Чтобы присоединиться к сообществу финансовых советников, оставьте заявку. Во время встречи мы предложим оптимальную для Вас схему взаимодействия, отвечающую Вашим запросам.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" type="button">
+          <span>Вопрос второй</span>
+          <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 12.5L10 7.5L15 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq__answer">
+          <p>Чтобы присоединиться к сообществу финансовых советников, оставьте заявку. Во время встречи мы предложим оптимальную для Вас схему взаимодействия, отвечающую Вашим запросам.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" type="button">
+          <span>Вопрос третий</span>
+          <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 12.5L10 7.5L15 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq__answer">
+          <p>Чтобы присоединиться к сообществу финансовых советников, оставьте заявку. Во время встречи мы предложим оптимальную для Вас схему взаимодействия, отвечающую Вашим запросам.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" type="button">
+          <span>Вопрос четвёртый</span>
+          <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 12.5L10 7.5L15 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq__answer">
+          <p>Чтобы присоединиться к сообществу финансовых советников, оставьте заявку. Во время встречи мы предложим оптимальную для Вас схему взаимодействия, отвечающую Вашим запросам.</p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__question" type="button">
+          <span>Вопрос пятый</span>
+          <svg class="faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 12.5L10 7.5L15 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq__answer">
+          <p>Чтобы присоединиться к сообществу финансовых советников, оставьте заявку. Во время встречи мы предложим оптимальную для Вас схему взаимодействия, отвечающую Вашим запросам.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <a href="#" class="footer__logo">
+          <img src="images/logo.png" alt="Dept AI" class="footer__logo-img" />
+          <span class="footer__logo-text">Dept AI</span>
+        </a>
+
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Telegram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="VK">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12.785 16.241s.288-.032.436-.192c.136-.148.132-.427.132-.427s-.019-1.304.588-1.496c.596-.188 1.362 1.259 2.174 1.815.613.42 1.08.328 1.08.328l2.166-.03s1.132-.07.595-.959c-.044-.073-.312-.659-1.607-1.863-1.355-1.261-1.173-1.057.459-3.24.993-1.328 1.39-2.14 1.266-2.486-.118-.33-.848-.243-.848-.243l-2.437.015s-.181-.025-.315.055c-.131.079-.215.263-.215.263s-.387 1.028-.902 1.902c-1.088 1.848-1.524 1.946-1.702 1.832-.414-.267-.31-1.075-.31-1.648 0-1.79.272-2.537-.53-2.73-.266-.064-.462-.106-1.142-.113-.873-.009-1.612.003-2.03.207-.278.136-.493.439-.362.456.161.021.527.098.72.363.25.342.24 1.11.24 1.11s.144 2.108-.335 2.37c-.327.18-.777-.188-1.74-1.868-.493-.86-.866-1.812-.866-1.812s-.072-.175-.2-.269c-.155-.114-.373-.15-.373-.15l-2.317.015s-.347.01-.475.16c-.113.135-.009.412-.009.412s1.817 4.244 3.873 6.384c1.886 1.963 4.025 1.834 4.025 1.834z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__contact">
+          <span class="footer__contact-label">Связаться с нами:</span>
+          <div class="footer__contact-links">
+            <a href="#" class="footer__contact-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z" fill="currentColor"/>
+              </svg>
+              Telegram
+            </a>
+            <a href="#" class="footer__contact-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" fill="currentColor"/>
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+        <span class="footer__copy">© 2026 Dept AI</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__container">
+      <div class="modal__card">
+        <button class="modal__close" id="modalClose" aria-label="Закрыть">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="modal__header">
+          <div class="modal__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="#3B65BA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="modal__title">Связаться с нами</h3>
+          <p class="modal__subtitle">Оставьте заявку и мы свяжемся с вами в ближайшее время</p>
+        </div>
+
+        <form class="modal__form" id="contactForm">
+          <div class="modal__field">
+            <label class="modal__label" for="contactName">Имя</label>
+            <input class="modal__input" type="text" id="contactName" placeholder="Ваше имя" required autocomplete="name">
+          </div>
+          <div class="modal__field">
+            <label class="modal__label" for="contactEmail">Email</label>
+            <input class="modal__input" type="email" id="contactEmail" placeholder="email@example.com" required autocomplete="email">
+          </div>
+          <div class="modal__field">
+            <label class="modal__label" for="contactPhone">Телефон</label>
+            <input class="modal__input" type="tel" id="contactPhone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+          </div>
+          <div class="modal__field">
+            <label class="modal__label" for="contactMessage">Сообщение</label>
+            <textarea class="modal__input modal__textarea" id="contactMessage" placeholder="Расскажите о вашем запросе..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="modal__submit">
+            <span class="modal__submit-text">Отправить заявку</span>
+            <svg class="modal__submit-arrow" width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="modal__channels">
+          <span class="modal__channels-label">Или напишите напрямую:</span>
+          <div class="modal__channels-links">
+            <a href="#" class="modal__channel modal__channel--tg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z"/>
+              </svg>
+              Telegram
+            </a>
+            <a href="#" class="modal__channel modal__channel--wa">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Success state (hidden by default) -->
+        <div class="modal__success" id="modalSuccess">
+          <div class="modal__success-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="24" fill="#E8F5E9"/>
+              <path d="M15 24l6 6 12-12" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="modal__success-title">Заявка отправлена!</h3>
+          <p class="modal__success-text">Мы свяжемся с вами в ближайшее время</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
