@@ -10,9 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- SVG filter for liquid glass distortion -->
+  <svg style="display:none">
+    <filter id="glass-distortion" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.015" numOctaves="2" seed="3" result="turbulence"/>
+      <feGaussianBlur in="turbulence" stdDeviation="5" result="softMap"/>
+      <feDisplacementMap in="SourceGraphic" in2="softMap" scale="45" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
   <!-- Header (nav pill only — CTA lives inside dashboard) -->
   <header class="header" id="header">
     <nav class="header__nav">
+      <!-- Liquid glass layers -->
+      <div class="header__glass-effect"></div>
+      <div class="header__glass-tint"></div>
+      <div class="header__glass-shine"></div>
       <a href="#" class="header__logo">
         <div class="header__logo-icon">
           <img src="images/logo.png" alt="Dept AI" width="30" height="30">
@@ -120,16 +133,11 @@
 
       <div class="hero__dashboard">
         <div class="hero__dashboard-inner">
+          <!-- Frosted glass semi-circles -->
+          <div class="hero__semicircle hero__semicircle--left"></div>
+          <div class="hero__semicircle hero__semicircle--right"></div>
           <!-- CTA button positioned in dashboard top-right -->
           <a href="#" class="dashboard__cta">Связаться с нами</a>
-
-          <!-- Decorative background arcs -->
-          <svg class="hero__dashboard-arcs" viewBox="0 0 520 460" fill="none" preserveAspectRatio="xMidYMid slice">
-            <circle cx="260" cy="160" r="260" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <circle cx="260" cy="160" r="210" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
-            <circle cx="260" cy="160" r="160" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-            <circle cx="260" cy="160" r="110" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-          </svg>
 
           <div class="hero__cards">
             <!-- Chart Card -->
@@ -190,9 +198,9 @@
 
   <!-- Founders Section -->
   <section class="founders" id="about">
+    <p class="founders__label">Проблемы индустрии и наше решение</p>
     <div class="founders__content">
       <div class="founders__left">
-        <p class="founders__label">Проблемы индустрии и наше решение</p>
         <h2 class="founders__heading">
           Ростислав и Егор<br>
           <span class="founders__heading--accent">основатели<br>фонда Dept AI</span>
@@ -215,71 +223,88 @@
 
   <!-- Predictive Model Section -->
   <section class="model" id="investments">
+    <p class="model__label">Прогнозирование тренда</p>
     <div class="model__content">
       <div class="model__left">
-        <p class="model__label">Прогнозирование тренда</p>
         <h2 class="model__heading">
           Предиктивная<br>модель <span class="model__heading--accent">Dept Soft</span>
         </h2>
       </div>
       <div class="model__right">
         <div class="model__chart">
-          <svg viewBox="0 0 475 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 475 349" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="rgba(59,101,186,0.08)"/>
-                <stop offset="50%" stop-color="rgba(59,101,186,0.18)"/>
-                <stop offset="100%" stop-color="rgba(59,101,186,0.25)"/>
+                <stop offset="0%" stop-color="rgba(59,101,186,0.12)"/>
+                <stop offset="50%" stop-color="rgba(59,101,186,0.25)"/>
+                <stop offset="100%" stop-color="rgba(59,101,186,0.35)"/>
               </linearGradient>
+              <!-- Glow filter for white line -->
+              <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
 
             <!-- Background -->
-            <rect width="475" height="320" rx="20" fill="#D8E0F0"/>
+            <rect width="475" height="349" rx="20" fill="#D8E0F0"/>
 
-            <!-- Vertical dashed grid lines -->
-            <line x1="95" y1="20" x2="95" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
-            <line x1="175" y1="20" x2="175" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
-            <line x1="255" y1="20" x2="255" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
-            <line x1="335" y1="20" x2="335" y2="300" stroke="#B8C4DE" stroke-width="1.5" stroke-dasharray="5 5" class="model__grid"/>
+            <!-- Vertical dashed grid lines — thicker dashes, more spacing -->
+            <line x1="75" y1="20" x2="75" y2="330" stroke="#B0BDD8" stroke-width="2.5" stroke-dasharray="8 8" class="model__grid"/>
+            <line x1="175" y1="20" x2="175" y2="330" stroke="#B0BDD8" stroke-width="2.5" stroke-dasharray="8 8" class="model__grid"/>
+            <line x1="275" y1="20" x2="275" y2="330" stroke="#B0BDD8" stroke-width="2.5" stroke-dasharray="8 8" class="model__grid"/>
+            <line x1="340" y1="20" x2="340" y2="330" stroke="#B0BDD8" stroke-width="2.5" stroke-dasharray="8 8" class="model__grid"/>
 
-            <!-- Blue highlight band -->
-            <rect x="340" y="0" width="135" height="320" rx="0" fill="url(#bandGrad)" class="model__band"/>
-            <line x1="380" y1="0" x2="380" y2="320" stroke="#2B4D8E" stroke-width="2.5" class="model__band-line"/>
+            <!-- Blue highlight band — more prominent -->
+            <rect x="365" y="0" width="110" height="349" rx="0" fill="url(#bandGrad)" class="model__band"/>
+            <line x1="380" y1="0" x2="380" y2="349" stroke="#2B4D8E" stroke-width="3.5" class="model__band-line"/>
 
-            <!-- Main chart line (WHITE) -->
+            <!-- Main chart line (WHITE) with glow -->
             <polyline
               class="model__line"
-              points="35,195 95,255 175,230 255,85 300,175 340,125 380,105"
+              points="55,215 130,275 255,105 340,195 380,150"
               stroke="white"
-              stroke-width="2.5"
+              stroke-width="3"
               stroke-linejoin="round"
               stroke-linecap="round"
               fill="none"
+              filter="url(#lineGlow)"
             />
 
-            <!-- Dashed prediction line -->
-            <polyline
+            <!-- Dashed prediction line — straight line, no bending -->
+            <line
               class="model__predict"
-              points="380,105 430,60 465,30"
+              x1="380" y1="150" x2="455" y2="50"
               stroke="#4A6FB5"
-              stroke-width="2.5"
-              stroke-dasharray="10 8"
+              stroke-width="3"
+              stroke-dasharray="12 10"
               stroke-linecap="round"
-              stroke-linejoin="round"
-              fill="none"
             />
 
-            <!-- Data point circles -->
-            <circle class="model__dot" cx="35" cy="195" r="7" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
-            <circle class="model__dot" cx="95" cy="255" r="7" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
-            <circle class="model__dot" cx="175" cy="230" r="6" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
-            <circle class="model__dot" cx="255" cy="85" r="8" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
-            <circle class="model__dot" cx="300" cy="175" r="7" fill="white" stroke="#5B85CC" stroke-width="2.5"/>
-            <circle class="model__dot" cx="340" cy="125" r="8" fill="white" stroke="#4A6FB5" stroke-width="3"/>
-            <circle class="model__dot" cx="380" cy="105" r="8" fill="white" stroke="#4A6FB5" stroke-width="3"/>
+            <!-- Data point circles — blue fill with white center (grouped above line glow) -->
+            <g class="model__dots">
+              <circle cx="55" cy="215" r="12" fill="#6B96D6"/>
+              <circle cx="55" cy="215" r="5" fill="white"/>
 
-            <!-- Prediction endpoint -->
-            <circle class="model__dot model__dot--predict" cx="465" cy="30" r="7" fill="white" stroke="#4A6FB5" stroke-width="2.5"/>
+              <circle cx="130" cy="275" r="12" fill="#6B96D6"/>
+              <circle cx="130" cy="275" r="5" fill="white"/>
+
+              <circle cx="255" cy="105" r="13" fill="#6B96D6"/>
+              <circle cx="255" cy="105" r="5" fill="white"/>
+
+              <circle cx="340" cy="195" r="12" fill="#6B96D6"/>
+              <circle cx="340" cy="195" r="5" fill="white"/>
+
+              <circle cx="380" cy="150" r="13" fill="#3B65BA"/>
+              <circle cx="380" cy="150" r="5" fill="white"/>
+
+              <!-- Prediction endpoint -->
+              <circle cx="455" cy="50" r="13" fill="#3B65BA"/>
+              <circle cx="455" cy="50" r="5" fill="white"/>
+            </g>
           </svg>
         </div>
         <div class="model__text">
@@ -332,39 +357,7 @@
       </div>
       <div class="approach__right">
         <div class="approach__diagram">
-          <svg viewBox="0 0 560 440" fill="none" xmlns="http://www.w3.org/2000/svg" class="approach__svg">
-            <!-- Orbital ellipses -->
-            <ellipse cx="280" cy="220" rx="200" ry="100" transform="rotate(-30 280 220)" stroke="#C5CEDF" stroke-width="1.2" class="approach__orbit"/>
-            <ellipse cx="280" cy="220" rx="200" ry="100" transform="rotate(30 280 220)" stroke="#C5CEDF" stroke-width="1.2" class="approach__orbit"/>
-            <ellipse cx="280" cy="220" rx="200" ry="100" transform="rotate(90 280 220)" stroke="#C5CEDF" stroke-width="1.2" class="approach__orbit"/>
-
-            <!-- Central circle -->
-            <circle cx="280" cy="220" r="68" fill="#1C2F56" class="approach__core"/>
-            <text x="280" y="212" text-anchor="middle" fill="white" font-size="16" font-weight="600" font-family="Inter, sans-serif">Ядро</text>
-            <text x="280" y="234" text-anchor="middle" fill="white" font-size="16" font-weight="600" font-family="Inter, sans-serif">Soft Dept</text>
-
-            <!-- Satellite labels -->
-            <!-- Top-left -->
-            <rect x="68" y="52" width="240" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
-            <text x="188" y="79" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Разработка внефинансового ПО</text>
-
-            <!-- Top-right -->
-            <rect x="345" y="52" width="200" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
-            <text x="445" y="79" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Мульти-агентская AI система</text>
-
-            <!-- Middle-left -->
-            <rect x="18" y="200" width="180" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
-            <text x="108" y="227" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Машинное обучение</text>
-
-            <!-- Middle-right -->
-            <rect x="420" y="200" width="130" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
-            <text x="485" y="227" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Работа с данными</text>
-
-            <!-- Bottom-center -->
-            <rect x="115" y="355" width="330" height="42" rx="21" fill="white" stroke="#C5CEDF" stroke-width="1.2"/>
-            <text x="280" y="374" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">Передовые подходы к портфельному</text>
-            <text x="280" y="391" text-anchor="middle" fill="#1C2F56" font-size="13" font-weight="500" font-family="Inter, sans-serif">управлению и hedge-фоны</text>
-          </svg>
+          <img src="images/approach-diagram.png" alt="Схема подхода к формированию капитала" class="approach__diagram-img">
         </div>
       </div>
     </div>
@@ -582,14 +575,14 @@
       <img src="images/cta-waves.png" alt="" class="cta__bg-img" />
     </div>
     <div class="cta__content">
-      <h2 class="cta__heading">Надежный проводник в&nbsp;мир технологичных финансовых решений</h2>
+      <h2 class="cta__heading"><span style="white-space:nowrap">Надежный проводник в&nbsp;мир технологичных</span><br>финансовых решений</h2>
       <a href="#" class="cta__button">Назначить встречу</a>
     </div>
   </section>
 
   <!-- FAQ Section -->
   <section class="faq">
-    <h2 class="faq__heading">Часто задаваемые вопросы</h2>
+    <h2 class="faq__heading">Часто задаваемые<br>вопросы</h2>
 
     <div class="faq__list">
       <div class="faq__item is-open">
@@ -664,14 +657,14 @@
         </a>
 
         <div class="footer__socials">
-          <a href="#" class="footer__social" aria-label="Telegram">
+          <a href="https://t.me/" class="footer__social" aria-label="Telegram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z" fill="currentColor"/>
+              <path d="M9.417 15.181l-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821l.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693L18.953 5.78c.595-.394 1.136-.176.691.218L9.417 15.181z" fill="currentColor"/>
             </svg>
           </a>
-          <a href="#" class="footer__social" aria-label="VK">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M12.785 16.241s.288-.032.436-.192c.136-.148.132-.427.132-.427s-.019-1.304.588-1.496c.596-.188 1.362 1.259 2.174 1.815.613.42 1.08.328 1.08.328l2.166-.03s1.132-.07.595-.959c-.044-.073-.312-.659-1.607-1.863-1.355-1.261-1.173-1.057.459-3.24.993-1.328 1.39-2.14 1.266-2.486-.118-.33-.848-.243-.848-.243l-2.437.015s-.181-.025-.315.055c-.131.079-.215.263-.215.263s-.387 1.028-.902 1.902c-1.088 1.848-1.524 1.946-1.702 1.832-.414-.267-.31-1.075-.31-1.648 0-1.79.272-2.537-.53-2.73-.266-.064-.462-.106-1.142-.113-.873-.009-1.612.003-2.03.207-.278.136-.493.439-.362.456.161.021.527.098.72.363.25.342.24 1.11.24 1.11s.144 2.108-.335 2.37c-.327.18-.777-.188-1.74-1.868-.493-.86-.866-1.812-.866-1.812s-.072-.175-.2-.269c-.155-.114-.373-.15-.373-.15l-2.317.015s-.347.01-.475.16c-.113.135-.009.412-.009.412s1.817 4.244 3.873 6.384c1.886 1.963 4.025 1.834 4.025 1.834z" fill="currentColor"/>
+          <a href="#" class="footer__social" aria-label="Max">
+            <svg width="28" height="28" viewBox="0 0 120 120" fill="none">
+              <path d="M0 0 C9.61759221 7.86229021 16.90810755 17.9659321 18.27392578 30.72827148 C19.09435459 45.84784762 16.33855659 57.82267981 6.4296875 69.61328125 C-1.32277425 77.95794494 -12.57803136 83.00275892 -23.890625 83.91796875 C-30.85000474 84.08041127 -36.20102372 83.32834189 -42.60546875 80.5546875 C-45.15339622 79.44617651 -45.15339622 79.44617651 -48.9453125 79.6796875 C-50.84212845 80.53567663 -50.84212845 80.53567663 -52.6953125 81.6796875 C-57.05864012 83.97145397 -60.05044259 84.26043478 -64.9453125 83.6796875 C-67.44083494 81.97130415 -67.8975156 80.90316174 -68.53515625 77.921875 C-68.70724609 76.25511719 -68.70724609 76.25511719 -68.8828125 74.5546875 C-69.45466885 69.77944261 -70.2439567 65.32087557 -71.51196289 60.68676758 C-75.674299 45.25864199 -76.50895141 28.25957895 -68.4375 14.01953125 C-61.04761481 2.62535943 -51.80398625 -3.21977669 -39.1953125 -7.6328125 C-25.62727102 -10.49070263 -11.23817562 -8.27426117 0 0 Z M-44.3828125 21.9921875 C-50.58784787 30.33568138 -51.64099647 39.38930064 -50.66015625 49.66796875 C-49.86131984 54.19918366 -48.90539252 57.08530462 -45.9453125 60.6796875 C-45.4090625 60.1640625 -44.8728125 59.6484375 -44.3203125 59.1171875 C-41.9453125 57.6796875 -41.9453125 57.6796875 -39.1953125 57.8671875 C-36.82162435 58.46060954 -34.4688589 59.13956649 -32.1328125 59.8671875 C-26.15272307 61.38793682 -21.09766873 59.81917021 -15.7578125 56.9921875 C-9.10762084 51.52425213 -5.43167251 46.62434765 -4.5703125 37.8671875 C-4.83644834 30.51343391 -7.98259572 25.22033576 -13.2578125 20.2421875 C-17.89915399 16.41498296 -21.83012909 15.09504529 -27.7578125 14.3046875 C-34.14538188 15.05616625 -40.00221245 17.1418473 -44.3828125 21.9921875 Z" fill="currentColor" transform="translate(87.9453125,22.3203125)"/>
             </svg>
           </a>
           <a href="#" class="footer__social" aria-label="YouTube">
@@ -686,18 +679,8 @@
         <div class="footer__contact">
           <span class="footer__contact-label">Связаться с нами:</span>
           <div class="footer__contact-links">
-            <a href="#" class="footer__contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z" fill="currentColor"/>
-              </svg>
-              Telegram
-            </a>
-            <a href="#" class="footer__contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" fill="currentColor"/>
-              </svg>
-              WhatsApp
-            </a>
+            <a href="https://t.me/" class="footer__contact-link">Telegram</a>,
+            <a href="#" class="footer__contact-link">WhatsApp</a>
           </div>
         </div>
         <span class="footer__copy">© 2026 Dept AI</span>
@@ -718,30 +701,34 @@
 
         <div class="modal__header">
           <div class="modal__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="#3B65BA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <img src="images/logo.png" alt="Dept AI" width="40" height="40">
           </div>
-          <h3 class="modal__title">Связаться с нами</h3>
-          <p class="modal__subtitle">Оставьте заявку и мы свяжемся с вами в ближайшее время</p>
+          <h3 class="modal__title">Связаться <span style="color:#3B65BA">с нами</span></h3>
+          <p class="modal__subtitle">Обсудим ваш вопрос и определим дальнейшие шаги для дальнейшей работы.</p>
         </div>
 
-        <form class="modal__form" id="contactForm">
+        <form class="modal__form" id="contactForm" novalidate>
           <div class="modal__field">
-            <label class="modal__label" for="contactName">Имя</label>
+            <label class="modal__label" for="contactName">Имя <span class="modal__required">*</span></label>
             <input class="modal__input" type="text" id="contactName" placeholder="Ваше имя" required autocomplete="name">
+            <span class="modal__error" id="errorName">Введите ваше имя</span>
           </div>
           <div class="modal__field">
-            <label class="modal__label" for="contactEmail">Email</label>
+            <label class="modal__label" for="contactEmail">Email <span class="modal__required">*</span></label>
             <input class="modal__input" type="email" id="contactEmail" placeholder="email@example.com" required autocomplete="email">
+            <span class="modal__error" id="errorEmail">Введите корректный email</span>
           </div>
           <div class="modal__field">
             <label class="modal__label" for="contactPhone">Телефон</label>
             <input class="modal__input" type="tel" id="contactPhone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
           </div>
           <div class="modal__field">
+            <label class="modal__label" for="contactTelegram">Telegram</label>
+            <input class="modal__input" type="text" id="contactTelegram" placeholder="@username">
+          </div>
+          <div class="modal__field">
             <label class="modal__label" for="contactMessage">Сообщение</label>
-            <textarea class="modal__input modal__textarea" id="contactMessage" placeholder="Расскажите о вашем запросе..." rows="3"></textarea>
+            <textarea class="modal__input modal__textarea" id="contactMessage" placeholder="Расскажите о вашем запросе..." rows="2"></textarea>
           </div>
           <button type="submit" class="modal__submit">
             <span class="modal__submit-text">Отправить заявку</span>
@@ -754,9 +741,9 @@
         <div class="modal__channels">
           <span class="modal__channels-label">Или напишите напрямую:</span>
           <div class="modal__channels-links">
-            <a href="#" class="modal__channel modal__channel--tg">
+            <a href="https://t.me/" class="modal__channel modal__channel--tg">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z"/>
+                <path d="M9.417 15.181l-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821l.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693L18.953 5.78c.595-.394 1.136-.176.691.218L9.417 15.181z"/>
               </svg>
               Telegram
             </a>
@@ -771,14 +758,17 @@
 
         <!-- Success state (hidden by default) -->
         <div class="modal__success" id="modalSuccess">
-          <div class="modal__success-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="24" r="24" fill="#E8F5E9"/>
-              <path d="M15 24l6 6 12-12" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="modal__success-logo">
+            <img src="images/logo.png" alt="Dept AI" width="48" height="48">
+          </div>
+          <div class="modal__success-check">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="27" stroke="#3B65BA" stroke-width="2" fill="none" class="modal__success-circle"/>
+              <path d="M18 28l7 7 13-13" stroke="#3B65BA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" class="modal__success-tick"/>
             </svg>
           </div>
-          <h3 class="modal__success-title">Заявка отправлена!</h3>
-          <p class="modal__success-text">Мы свяжемся с вами в ближайшее время</p>
+          <h3 class="modal__success-title">Заявка <span style="color:#3B65BA">отправлена!</span></h3>
+          <p class="modal__success-text">Мы свяжемся с вами в ближайшее время.<br>Спасибо за ваш интерес к Dept AI.</p>
         </div>
       </div>
     </div>

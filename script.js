@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     dashboard.addEventListener('mouseleave', () => {
-      dashboard.style.transform = 'translateY(0) rotateY(0) rotateX(0)';
+      dashboard.style.transform = '';
     });
   }
 
@@ -144,8 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const SCROLL_SPEED_PX = 0.7;
     const GAP_PX = 28;
 
-    // Clone all original cards to create seamless loop
     const originalCards = [...pressCarousel.children];
+
+    // Prepend clones before originals so we can start mid-scroll
+    originalCards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      pressCarousel.insertBefore(clone, pressCarousel.firstChild);
+    });
+
+    // Append clones after originals for seamless forward loop
     originalCards.forEach((card) => {
       const clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
@@ -157,13 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return total + card.offsetWidth + GAP_PX;
     }, 0);
 
+    // Start scrolled to the original set (after prepended clones)
+    pressCarousel.scrollLeft = singleSetWidth;
+
     let animationId = null;
 
     const step = () => {
       pressCarousel.scrollLeft += SCROLL_SPEED_PX;
 
-      // When we've scrolled past the original set, silently jump back
-      if (pressCarousel.scrollLeft >= singleSetWidth) {
+      // When we've scrolled past two sets, jump back to one set
+      if (pressCarousel.scrollLeft >= singleSetWidth * 2) {
         pressCarousel.scrollLeft -= singleSetWidth;
       }
 
@@ -418,6 +429,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.modal__header').style.display = '';
       document.querySelector('.modal__channels').style.display = '';
       modalSuccess.classList.remove('is-visible');
+      // Clear validation errors
+      contactForm.querySelectorAll('.modal__field.has-error').forEach((f) => f.classList.remove('has-error'));
     }, 350);
   };
 
@@ -441,9 +454,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Form submit — show success state
+  // Chip toggle — single select, show message field on "Другое"
+  const messageField = document.getElementById('messageField');
+  document.querySelectorAll('.modal__chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.modal__chip').forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      messageField.style.display = chip.dataset.value === 'other' ? '' : 'none';
+    });
+  });
+
+  // Custom form validation
+  const nameInput = document.getElementById('contactName');
+  const emailInput = document.getElementById('contactEmail');
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validateField = (input) => {
+    const field = input.closest('.modal__field');
+    let isValid = true;
+
+    if (input.required && !input.value.trim()) {
+      isValid = false;
+    } else if (input.type === 'email' && input.value.trim() && !EMAIL_REGEX.test(input.value.trim())) {
+      isValid = false;
+    }
+
+    field.classList.toggle('has-error', !isValid);
+    return isValid;
+  };
+
+  // Clear error on input
+  [nameInput, emailInput].forEach((input) => {
+    input.addEventListener('input', () => {
+      const field = input.closest('.modal__field');
+      if (field.classList.contains('has-error')) {
+        validateField(input);
+      }
+    });
+  });
+
+  // Form submit — validate then show success state
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const nameValid = validateField(nameInput);
+    const emailValid = validateField(emailInput);
+
+    if (!nameValid || !emailValid) {
+      // Focus first invalid field
+      const firstInvalid = !nameValid ? nameInput : emailInput;
+      firstInvalid.focus();
+      return;
+    }
 
     // Hide form, show success
     contactForm.style.display = 'none';
@@ -452,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalSuccess.classList.add('is-visible');
 
     // Auto-close after 2.5s
-    setTimeout(closeModal, 2500);
+    setTimeout(closeModal, 5000);
   });
 
   // Wire up mobile menu contact button (now that openModal is defined)
