@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dept AI — Технологические решения</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -66,6 +66,9 @@
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu__backdrop" id="mobileMenuBackdrop"></div>
     <div class="mobile-menu__panel">
+      <div class="mobile-menu__glass-effect"></div>
+      <div class="mobile-menu__glass-tint"></div>
+      <div class="mobile-menu__glass-shine"></div>
       <div class="mobile-menu__header">
         <a href="#" class="mobile-menu__logo">
           <img src="images/logo.png" alt="Dept AI" width="30" height="30">
@@ -91,24 +94,6 @@
           <span>Команда</span>
         </a>
       </nav>
-      <div class="mobile-menu__cta">
-        <a href="#" class="mobile-menu__button" id="mobileMenuContact">Назначить встречу</a>
-      </div>
-      <div class="mobile-menu__footer">
-        <div class="mobile-menu__socials">
-          <a href="#" aria-label="Telegram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022-.62 2.28 2.28 0 0 0-1.196.009L3.32 6.782a2.14 2.14 0 0 0-.97.637 2.08 2.08 0 0 0-.461 1.073 2.06 2.06 0 0 0 .18 1.132c.178.36.45.665.79.886l5.073 3.07L12.6 8.912l-4.669 5.084 3.06 5.09c.23.35.545.636.916.834.37.198.786.3 1.21.298a2.14 2.14 0 0 0 1.086-.458c.312-.264.54-.613.653-1.005l4.964-15.66a2.2 2.2 0 0 0-.622-1.662z"/>
-            </svg>
-          </a>
-          <a href="#" aria-label="WhatsApp">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
-            </svg>
-          </a>
-        </div>
-        <span class="mobile-menu__copy">© 2026 Dept AI</span>
-      </div>
     </div>
   </div>
 
@@ -137,13 +122,13 @@
           <div class="hero__semicircle hero__semicircle--left"></div>
           <div class="hero__semicircle hero__semicircle--right"></div>
           <!-- CTA button positioned in dashboard top-right -->
-          <a href="#" class="dashboard__cta">Связаться с нами</a>
+          <a href="#" class="dashboard__cta"><span class="dashboard__cta-full">Связаться с нами</span><span class="dashboard__cta-short">Связаться</span></a>
 
           <div class="hero__cards">
             <!-- Chart Card -->
             <div class="hero__card hero__card--chart">
               <div class="hero__chart">
-                <svg viewBox="0 0 300 130" class="hero__chart-svg" preserveAspectRatio="none">
+                <svg viewBox="0 0 300 130" class="hero__chart-svg">
                   <!-- Main solid wave line — growing amplitude -->
                   <path
                     class="chart-line chart-line--main"
@@ -232,7 +217,7 @@
       </div>
       <div class="model__right">
         <div class="model__chart">
-          <svg viewBox="0 0 475 349" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="-2 -2 479 353" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="rgba(59,101,186,0.12)"/>
@@ -319,7 +304,7 @@
   <!-- Flagship Products Section -->
   <section class="products">
     <div class="products__content">
-      <h2 class="products__heading">Флагманские продукты</h2>
+      <h2 class="products__heading">Флагманские<br>продукты</h2>
       <div class="products__grid">
         <!-- FX Card -->
         <div class="products__card products__card--light">
@@ -366,7 +351,7 @@
   <!-- Clients Section -->
   <section class="clients">
     <div class="clients__content">
-      <h2 class="clients__heading">Для частных клиентов<br>и инвесторов</h2>
+      <h2 class="clients__heading">Для частных<br>клиентов и инвесторов</h2>
 
       <div class="clients__grid">
         <!-- Card 1: Персональный менеджер -->
@@ -575,14 +560,14 @@
       <img src="images/cta-waves.png" alt="" class="cta__bg-img" />
     </div>
     <div class="cta__content">
-      <h2 class="cta__heading"><span style="white-space:nowrap">Надежный проводник в&nbsp;мир технологичных</span><br>финансовых решений</h2>
+      <h2 class="cta__heading">Надежный проводник в&nbsp;мир технологичных финансовых решений</h2>
       <a href="#" class="cta__button">Назначить встречу</a>
     </div>
   </section>
 
   <!-- FAQ Section -->
   <section class="faq">
-    <h2 class="faq__heading">Часто задаваемые<br>вопросы</h2>
+    <h2 class="faq__heading"><span class="faq__heading--desktop">Часто задаваемые<br>вопросы</span><span class="faq__heading--mobile">FAQ</span></h2>
 
     <div class="faq__list">
       <div class="faq__item is-open">
@@ -679,7 +664,7 @@
         <div class="footer__contact">
           <span class="footer__contact-label">Связаться с нами:</span>
           <div class="footer__contact-links">
-            <a href="https://t.me/" class="footer__contact-link">Telegram</a>,
+            <a href="https://t.me/" class="footer__contact-link">Telegram</a>
             <a href="#" class="footer__contact-link">WhatsApp</a>
           </div>
         </div>

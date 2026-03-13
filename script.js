@@ -197,6 +197,37 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoScroll();
   }
 
+  // Products carousel — auto-reveal second card on mobile
+  const productsGrid = document.querySelector('.products__grid');
+
+  if (productsGrid && window.innerWidth <= 640) {
+    const productsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const firstCard = productsGrid.querySelector('.products__card');
+            const scrollTarget = firstCard.offsetWidth + 20;
+
+            // Scroll to second card after 2s
+            setTimeout(() => {
+              productsGrid.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+
+              // Scroll back to first card after 1.5s
+              setTimeout(() => {
+                productsGrid.scrollTo({ left: 0, behavior: 'smooth' });
+              }, 1500);
+            }, 2000);
+
+            productsObserver.unobserve(productsGrid);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    productsObserver.observe(productsGrid);
+  }
+
   // Certs carousel — infinite auto-scroll on mobile
   const certsCarousel = document.getElementById('certsCarousel');
   const MOBILE_BREAKPOINT = 640;
@@ -314,10 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let menuScrollY = 0;
   const MENU_SCROLL_THRESHOLD = 8;
 
+  const headerEl = document.querySelector('.header');
+
   const openMobileMenu = () => {
     mobileMenu.classList.add('is-open');
     headerBurger.classList.add('is-open');
     headerBurger.setAttribute('aria-expanded', 'true');
+    if (headerEl) headerEl.classList.add('is-menu-hidden');
     menuScrollY = window.scrollY;
   };
 
@@ -325,6 +359,16 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenu.classList.remove('is-open');
     headerBurger.classList.remove('is-open');
     headerBurger.setAttribute('aria-expanded', 'false');
+    // Bubbly reappear after menu closes
+    setTimeout(() => {
+      if (headerEl) {
+        headerEl.classList.remove('is-menu-hidden');
+        headerEl.classList.add('is-menu-reappearing');
+        headerEl.addEventListener('animationend', () => {
+          headerEl.classList.remove('is-menu-reappearing');
+        }, { once: true });
+      }
+    }, 180);
   };
 
   // Close menu on scroll — let the user scroll freely
@@ -535,4 +579,55 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMobileMenu();
     }
   });
+
+  // Team carousel auto-scroll
+  const teamGrid = document.querySelector('.team__grid');
+  if (teamGrid) {
+    const teamCards = teamGrid.querySelectorAll('.team__card');
+    let teamIndex = 0;
+    let teamInterval = null;
+
+    const scrollToTeamCard = (index) => {
+      const card = teamCards[index];
+      if (!card) return;
+      teamGrid.scrollTo({
+        left: card.offsetLeft - 20,
+        behavior: 'smooth'
+      });
+    };
+
+    const startTeamCarousel = () => {
+      if (teamInterval) return;
+      teamInterval = setInterval(() => {
+        teamIndex += 1;
+        if (teamIndex >= teamCards.length) {
+          teamIndex = 0;
+        }
+        scrollToTeamCard(teamIndex);
+      }, 3000);
+    };
+
+    const stopTeamCarousel = () => {
+      clearInterval(teamInterval);
+      teamInterval = null;
+    };
+
+    // Only run on mobile
+    const checkMobile = () => {
+      if (window.innerWidth <= 640) {
+        startTeamCarousel();
+      } else {
+        stopTeamCarousel();
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // Pause on touch, resume after
+    teamGrid.addEventListener('touchstart', stopTeamCarousel);
+    teamGrid.addEventListener('touchend', () => {
+      setTimeout(startTeamCarousel, 3000);
+    });
+  }
 });
