@@ -232,11 +232,15 @@
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
+              <clipPath id="chartClip">
+                <rect width="475" height="349" rx="20"/>
+              </clipPath>
             </defs>
 
             <!-- Background -->
             <rect width="475" height="349" rx="20" fill="#D8E0F0"/>
 
+            <g clip-path="url(#chartClip)">
             <!-- Vertical dashed grid lines — thicker dashes, more spacing -->
             <line x1="75" y1="20" x2="75" y2="330" stroke="#B0BDD8" stroke-width="2.5" stroke-dasharray="8 8" class="model__grid"/>
             <line x1="175" y1="20" x2="175" y2="330" stroke="#B0BDD8" stroke-width="2.5" stroke-dasharray="8 8" class="model__grid"/>
@@ -289,6 +293,7 @@
               <!-- Prediction endpoint -->
               <circle cx="455" cy="50" r="13" fill="#3B65BA"/>
               <circle cx="455" cy="50" r="5" fill="white"/>
+            </g>
             </g>
           </svg>
         </div>

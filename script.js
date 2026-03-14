@@ -630,4 +630,53 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(startTeamCarousel, 3000);
     });
   }
+
+  // Certs carousel auto-scroll
+  const certsGrid = document.querySelector('.certs__grid');
+  if (certsGrid) {
+    const certsCards = certsGrid.querySelectorAll('.certs__card');
+    let certsIndex = 0;
+    let certsInterval = null;
+
+    const scrollToCertsCard = (index) => {
+      const card = certsCards[index];
+      if (!card) return;
+      certsGrid.scrollTo({
+        left: card.offsetLeft - 20,
+        behavior: 'smooth'
+      });
+    };
+
+    const startCertsCarousel = () => {
+      if (certsInterval) return;
+      certsInterval = setInterval(() => {
+        certsIndex += 1;
+        if (certsIndex >= certsCards.length) {
+          certsIndex = 0;
+        }
+        scrollToCertsCard(certsIndex);
+      }, 3000);
+    };
+
+    const stopCertsCarousel = () => {
+      clearInterval(certsInterval);
+      certsInterval = null;
+    };
+
+    const checkCertsMobile = () => {
+      if (window.innerWidth <= 900) {
+        startCertsCarousel();
+      } else {
+        stopCertsCarousel();
+      }
+    };
+
+    checkCertsMobile();
+    window.addEventListener('resize', checkCertsMobile);
+
+    certsGrid.addEventListener('touchstart', stopCertsCarousel);
+    certsGrid.addEventListener('touchend', () => {
+      setTimeout(startCertsCarousel, 3000);
+    });
+  }
 });
